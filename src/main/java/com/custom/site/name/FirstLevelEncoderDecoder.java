@@ -1,8 +1,6 @@
 package com.custom.site.name;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import com.custom.site.name.model.RGB;
 import com.custom.site.name.model.YUV;
@@ -47,5 +45,22 @@ public class FirstLevelEncoderDecoder {
       System.out.println(new Date());
       return rgbList;
    }
-   
+
+   public Map<String, long[][]> convertYuvToMatrix(List<YUV> yuvList, int width, int height) {
+      Map<String, long[][]> imageMatrix = new HashMap<String, long[][]>();
+      long[][] yMatrix = new long[width][height];
+      long[][] uMatrix = new long[width][height];
+      long[][] vMatrix = new long[width][height];
+      for(int i = 0; i < yuvList.size(); i++){
+         YUV yuvPixel = yuvList.get(i);
+         yMatrix[i/height][i%height] = yuvPixel.getY();
+         uMatrix[i/height][i%height] = yuvPixel.getU();
+         vMatrix[i/height][i%height] = yuvPixel.getV();
+      }
+      imageMatrix.put("y", yMatrix);
+      imageMatrix.put("u", uMatrix);
+      imageMatrix.put("v", vMatrix);
+      return imageMatrix;
+   }
+
 }

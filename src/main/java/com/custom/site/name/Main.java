@@ -21,6 +21,7 @@ public class Main {
       List<RGB> rgbImage = firstLevelEncoderDecoder.convertListToRgb(image);
       List<YUV> yuvImage = firstLevelEncoderDecoder.convertRGBImageToYUV(rgbImage);
       System.out.println(yuvImage.size());
+      firstLevelEncoderDecoder.convertYuvToMatrix(yuvImage, 800, 600);
    }
    
 }
