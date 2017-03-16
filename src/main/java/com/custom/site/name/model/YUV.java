@@ -5,9 +5,9 @@ package com.custom.site.name.model;
  *
  */
 public class YUV {
-   private double y;
-   private double u;
-   private double v;
+   private long y;
+   private long u;
+   private long v;
    
    public YUV() {
       super();
@@ -18,7 +18,7 @@ public class YUV {
     * @param u
     * @param v
     */
-   public YUV(double y, double u, double v) {
+   public YUV(long y, long u, long v) {
       super();
       this.y = y;
       this.u = u;
@@ -28,7 +28,7 @@ public class YUV {
    /**
     * @return the y
     */
-   public double getY() {
+   public long getY() {
       return y;
    }
    
@@ -36,14 +36,14 @@ public class YUV {
     * @param y
     *           the y to set
     */
-   public void setY(double y) {
+   public void setY(long y) {
       this.y = y;
    }
    
    /**
     * @return the u
     */
-   public double getU() {
+   public long getU() {
       return u;
    }
    
@@ -51,14 +51,14 @@ public class YUV {
     * @param u
     *           the u to set
     */
-   public void setU(double u) {
+   public void setU(long u) {
       this.u = u;
    }
    
    /**
     * @return the v
     */
-   public double getV() {
+   public long getV() {
       return v;
    }
    
@@ -66,8 +66,18 @@ public class YUV {
     * @param v
     *           the v to set
     */
-   public void setV(double v) {
+   public void setV(long v) {
       this.v = v;
+   }
+   
+   /*
+    * (non-Javadoc)
+    * 
+    * @see java.lang.Object#toString()
+    */
+   @Override
+   public String toString() {
+      return "YUV [" + y + ", " + u + ", " + v + "]";
    }
    
 }

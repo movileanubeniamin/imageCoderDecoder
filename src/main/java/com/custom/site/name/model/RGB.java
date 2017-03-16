@@ -5,9 +5,9 @@ package com.custom.site.name.model;
  *
  */
 public class RGB {
-   private double r;
-   private double g;
-   private double b;
+   private long r;
+   private long g;
+   private long b;
    
    public RGB() {
       super();
@@ -18,7 +18,7 @@ public class RGB {
     * @param g
     * @param b
     */
-   public RGB(double r, double g, double b) {
+   public RGB(long r, long g, long b) {
       super();
       this.r = r;
       this.g = g;
@@ -28,7 +28,7 @@ public class RGB {
    /**
     * @return the r
     */
-   public double getR() {
+   public long getR() {
       return r;
    }
    
@@ -36,14 +36,14 @@ public class RGB {
     * @param r
     *           the r to set
     */
-   public void setR(double r) {
+   public void setR(long r) {
       this.r = r;
    }
    
    /**
     * @return the g
     */
-   public double getG() {
+   public long getG() {
       return g;
    }
    
@@ -51,14 +51,14 @@ public class RGB {
     * @param g
     *           the g to set
     */
-   public void setG(double g) {
+   public void setG(long g) {
       this.g = g;
    }
    
    /**
     * @return the b
     */
-   public double getB() {
+   public long getB() {
       return b;
    }
    
@@ -66,8 +66,18 @@ public class RGB {
     * @param b
     *           the b to set
     */
-   public void setB(double b) {
+   public void setB(long b) {
       this.b = b;
+   }
+   
+   /*
+    * (non-Javadoc)
+    * 
+    * @see java.lang.Object#toString()
+    */
+   @Override
+   public String toString() {
+      return "RGB [" + r + ", " + g + ", " + b + "]";
    }
    
 }
