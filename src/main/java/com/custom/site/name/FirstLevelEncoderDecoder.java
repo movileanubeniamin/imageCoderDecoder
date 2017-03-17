@@ -48,14 +48,14 @@ public class FirstLevelEncoderDecoder {
 
    public Map<String, long[][]> convertYuvToMatrix(List<YUV> yuvList, int width, int height) {
       Map<String, long[][]> imageMatrix = new HashMap<String, long[][]>();
-      long[][] yMatrix = new long[width][height];
-      long[][] uMatrix = new long[width][height];
-      long[][] vMatrix = new long[width][height];
-      for(int i = 0; i < yuvList.size(); i++){
+      long[][] yMatrix = new long[height][width];
+      long[][] uMatrix = new long[height][width];
+      long[][] vMatrix = new long[height][width];
+      for(int i = 0; i < width * height; i++){
          YUV yuvPixel = yuvList.get(i);
-         yMatrix[i/height][i%height] = yuvPixel.getY();
-         uMatrix[i/height][i%height] = yuvPixel.getU();
-         vMatrix[i/height][i%height] = yuvPixel.getV();
+         yMatrix[i/width][i%width] = yuvPixel.getY();
+         uMatrix[i/width][i%width] = yuvPixel.getU();
+         vMatrix[i/width][i%width] = yuvPixel.getV();
       }
       imageMatrix.put("y", yMatrix);
       imageMatrix.put("u", uMatrix);
