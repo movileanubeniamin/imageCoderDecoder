@@ -63,4 +63,24 @@ public class FirstLevelEncoderDecoder {
       return imageMatrix;
    }
 
+   public List<long[][]> matrixToBlocks(long [][]yuvMatrix, int blockDimension, int width, int height){
+      int blocksSize = width / blockDimension * (height / blockDimension);
+      List<long[][]> blocks = new ArrayList<long[][]>();
+      for (int i = 0; i < blocksSize; i++) {
+         long[][] subBlock = new long[blockDimension][blockDimension];
+         int widthPos = (blockDimension * (i / blockDimension)) % height;
+         int heightPos = (blockDimension * i) % width;
+         if (heightPos + blockDimension > width) {
+            heightPos = 0;
+         }
+         for (int row = 0; row < blockDimension; row++) {
+            for (int col = 0; col < blockDimension; col++) {
+               subBlock[row][col] = yuvMatrix[widthPos + row][col + heightPos];
+            }
+         }
+         blocks.add(subBlock);
+      }
+      return blocks;
+   }
+
 }
