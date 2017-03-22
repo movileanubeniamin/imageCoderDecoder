@@ -38,11 +38,11 @@ public class FirstLevelEncoderDecoder {
    }
    
    public List<RGB> convertListToRgb(List<Integer> image) {
-      System.out.println(new Date());
+//      System.out.println(new Date());
       List<RGB> rgbList = new ArrayList<RGB>();
       for (int index = 3; index < image.size();)
          rgbList.add(new RGB(image.get(index++), image.get(index++), image.get(index++)));
-      System.out.println(new Date());
+//      System.out.println(new Date());
       return rgbList;
    }
 
@@ -68,14 +68,14 @@ public class FirstLevelEncoderDecoder {
       List<long[][]> blocks = new ArrayList<long[][]>();
       for (int i = 0; i < blocksSize; i++) {
          long[][] subBlock = new long[blockDimension][blockDimension];
-         int widthPos = (blockDimension * (i / blockDimension)) % height;
-         int heightPos = (blockDimension * i) % width;
-         if (heightPos + blockDimension > width) {
-            heightPos = 0;
+         int heightPos = (blockDimension * (i / blockDimension)) % height;
+         int widthPos = (blockDimension * i) % width;
+         if (widthPos + blockDimension > width) {
+            widthPos = 0;
          }
          for (int row = 0; row < blockDimension; row++) {
             for (int col = 0; col < blockDimension; col++) {
-               subBlock[row][col] = yuvMatrix[widthPos + row][col + heightPos];
+               subBlock[row][col] = yuvMatrix[heightPos + row][col + widthPos];
             }
          }
          blocks.add(subBlock);
