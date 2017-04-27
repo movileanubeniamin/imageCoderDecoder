@@ -17,8 +17,9 @@ public class Main {
     public static void main(String[] args) {
         start();
 
-//
-//        //Tests
+
+//       //Tests
+//       testSubsample();
 //       testareMatBlo(800, 600, 8);
 //       testareMatBlo(8, 8, 4);
 //       testareMatBlo(4, 4, 2);
@@ -91,6 +92,25 @@ public class Main {
         else {
             System.out.println("NO");
         }
+    }
+
+
+    private static void testSubsample(){
+        long[][] matrix = {
+                {1,  1,  2,  2,  3,  3,  4,  4},
+                {1,  1,  2,  2,  3,  3,  4,  4},
+                {5,  5,  6,  6,  7,  7,  8,  8},
+                {5,  5,  6,  6,  7,  7,  8,  8},
+                {9,  9,  10, 10, 11, 11, 12, 12},
+                {9,  9,  10, 10, 11, 11, 12, 12},
+                {13, 13, 14, 14, 15, 15, 16, 16},
+                {13, 13, 14, 14, 15, 15, 16, 16}};
+        long[][] subTest = FirstLevelEncoder.subSample420(matrix);
+        long[][] resTest = FirstLevelDecoder.resizeSubsampledBlocks(subTest);
+
+        System.out.println(
+                java.util.Arrays.deepEquals(matrix, resTest)
+        );
     }
 
 }

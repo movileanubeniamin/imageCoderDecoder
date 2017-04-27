@@ -35,7 +35,7 @@ public class FirstLevelDecoder {
     }
 
 
-    private static long[][] resizeSubsampledBlocks(long[][] subBlocks){
+    public static long[][] resizeSubsampledBlocks(long[][] subBlocks){
         long[][] resizedBlocks = new long[8][8];
         int nr = 0;
         long[] pixel = new long[16];

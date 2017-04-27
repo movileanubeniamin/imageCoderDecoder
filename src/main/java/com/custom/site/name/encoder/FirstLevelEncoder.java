@@ -86,7 +86,7 @@ public class FirstLevelEncoder {
     }
 
 
-    private static long[][] subSample420(long[][] originalBlocks){
+    public static long[][] subSample420(long[][] originalBlocks){
         long[][] downsampledBlocks = new long[4][4];
         long[] mediePixel = new long[16];
         int nr = 0;
