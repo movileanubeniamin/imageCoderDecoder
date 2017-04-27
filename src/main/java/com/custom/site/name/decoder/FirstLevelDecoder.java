@@ -79,18 +79,12 @@ public class FirstLevelDecoder {
 
     private static RGB convertYuvToRgb(YUV yuv) {
         RGB rgb = new RGB();
-//        rgb.setR(Math.round(yuv.getY() + 1.403 * yuv.getV()));
-//        rgb.setG(Math.round(yuv.getY() - 0.344 * yuv.getU() - 0.741 * yuv.getV()));
-//        rgb.setB(Math.round(yuv.getY() + 1.770 * yuv.getU()));
-//        float C = yuv.getY() - 16;
-//        float D = yuv.getU() - 128;
-//        float E = yuv.getV() - 128;
-//        rgb.setR(Math.round(OtherUtils.clamp((298 * C + 409 * E + 128), 0, 255)));
-//        rgb.setG(Math.round(OtherUtils.clamp((298 * C - 100 * D - 208 * E + 128), 0, 255)));
-//        rgb.setB(Math.round(OtherUtils.clamp((298 * C + 516 * D + 128), 0, 255)));
-        rgb.setR(Math.round(OtherUtils.clamp((float) (yuv.getY() + 1.140 * yuv.getV()), 0, 255)));
-        rgb.setG(Math.round(OtherUtils.clamp((float) (yuv.getY() - 0.394 * yuv.getU() - 0.581 * yuv.getV()), 0, 255)));
-        rgb.setB(Math.round(OtherUtils.clamp((float) (yuv.getY() + 2.028 * yuv.getU()), 0, 255)));
+//        rgb.setR(Math.round(OtherUtils.clamp((float) (yuv.getY() + 1.140 * yuv.getV()), 0, 255)));
+//        rgb.setG(Math.round(OtherUtils.clamp((float) (yuv.getY() - 0.394 * yuv.getU() - 0.581 * yuv.getV()), 0, 255)));
+//        rgb.setB(Math.round(OtherUtils.clamp((float) (yuv.getY() + 2.028 * yuv.getU()), 0, 255)));
+        rgb.setR(Math.round(OtherUtils.clamp((float) (yuv.getY() + 1.402 * (yuv.getV() - 128)), 0, 255)));
+        rgb.setG(Math.round(OtherUtils.clamp((float) (yuv.getY() - 0.344136 * (- yuv.getU() + 128) - 0.714136 * (yuv.getV() - 128)), 0, 255)));
+        rgb.setB(Math.round(OtherUtils.clamp((float) (yuv.getY() + 1.772 * (- yuv.getU() + 128)), 0, 255)));
         return rgb;
     }
 

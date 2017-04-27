@@ -13,9 +13,12 @@ public class FirstLevelEncoder {
 
     private static YUV convertRgbToYuv(RGB rgb) {
         YUV yuv = new YUV();
+//        yuv.setY(Math.round(0.299 * rgb.getR() + 0.587 * rgb.getG() + 0.114 * rgb.getB()));
+//        yuv.setU(Math.round(-0.147 * rgb.getR() - 0.289 * rgb.getG() + 0.437 * rgb.getB()));
+//        yuv.setV(Math.round(0.615 * rgb.getR() - 0.515 * rgb.getG() - 0.100 * rgb.getB()));
         yuv.setY(Math.round(0.299 * rgb.getR() + 0.587 * rgb.getG() + 0.114 * rgb.getB()));
-        yuv.setU(Math.round(-0.147 * rgb.getR() - 0.289 * rgb.getG() + 0.437 * rgb.getB()));
-        yuv.setV(Math.round(0.615 * rgb.getR() - 0.515 * rgb.getG() - 0.100 * rgb.getB()));
+        yuv.setU(Math.round(128 - (-0.168736 * rgb.getR() - 0.331264 * rgb.getG() + 0.5 * rgb.getB())));
+        yuv.setV(Math.round(128 + (0.5 * rgb.getR() - 0.418688 * rgb.getG() - 0.081312 * rgb.getB())));
         return yuv;
     }
 
