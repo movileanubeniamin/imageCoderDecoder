@@ -1,5 +1,6 @@
 package com.custom.site.name;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +19,12 @@ public class Main {
         start();
 
 
-//       //Tests
-//       testSubsample();
-//       testareMatBlo(800, 600, 8);
-//       testareMatBlo(8, 8, 4);
-//       testareMatBlo(4, 4, 2);
+        //Tests
+//        testSubsample();
+//        testOrderSub(7500);
+//        testareMatBlo(800, 600, 8);
+//        testareMatBlo(8, 8, 4);
+//        testareMatBlo(4, 4, 2);
     }
 
     private static void start(){
@@ -111,6 +113,31 @@ public class Main {
         System.out.println(
                 java.util.Arrays.deepEquals(matrix, resTest)
         );
+    }
+
+
+    private static void testOrderSub(int nr){
+        List<long[][]> testList = new ArrayList<long[][]>();
+        for (int i = 0; i < nr; i++){
+            long[][] matrix = {
+                    {i,     i,     i+1,   i+1,   i+2,   i+2,   i+3,   i+3},
+                    {i,     i,     i+1,   i+1,   i+2,   i+2,   i+3,   i+3},
+                    {i+4,   i+4,   i+5,   i+5,   i+6,   i+6,   i+7,   i+7},
+                    {i+4,   i+4,   i+5,   i+5,   i+6,   i+6,   i+7,   i+7},
+                    {i+8,   i+8,   i+9,   i+9,   i+10,  i+10,  i+11,  i+11},
+                    {i+8,   i+8,   i+9,   i+9,   i+10,  i+10,  i+11,  i+11},
+                    {i+12,  i+12,  i+13,  i+13,  i+14,  i+14,  i+15,  i+15},
+                    {i+12,  i+12,  i+13,  i+13,  i+14,  i+14,  i+15,  i+15}};
+            testList.add(matrix);
+        }
+
+        List<long[][]> subTest = FirstLevelEncoder.subSampleBlocks(testList);
+        List<long[][]> sizeTest = FirstLevelDecoder.reziseSubsampledBlockList(subTest);
+        for (int i = 0; i < nr; i++) {
+            if (!(Arrays.equals(testList.get(i), sizeTest.get(i)))){
+                System.out.println("false");
+            }
+        }
     }
 
 }
