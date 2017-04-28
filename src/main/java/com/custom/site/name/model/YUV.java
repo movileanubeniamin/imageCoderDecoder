@@ -2,56 +2,57 @@ package com.custom.site.name.model;
 
 
 public class YUV {
-   private long y;
-   private long u;
-   private long v;
-
-   public YUV() {
-      super();
-   }
+    private long y;
+    private long u;
+    private long v;
 
 
-   public YUV(long y, long u, long v) {
-      super();
-      this.y = y;
-      this.u = u;
-      this.v = v;
-   }
+    public YUV() {
+        super();
+    }
 
 
-   public long getY() {
-      return y;
-   }
+    public YUV(long y, long u, long v) {
+        super();
+        this.y = y;
+        this.u = u;
+        this.v = v;
+    }
 
 
-   public void setY(long y) {
-      this.y = y;
-   }
+    public long getY() {
+        return y;
+    }
 
 
-   public long getU() {
-      return u;
-   }
+    public void setY(long y) {
+        this.y = y;
+    }
 
 
-   public void setU(long u) {
-      this.u = u;
-   }
+    public long getU() {
+        return u;
+    }
 
 
-   public long getV() {
-      return v;
-   }
+    public void setU(long u) {
+        this.u = u;
+    }
 
 
-   public void setV(long v) {
-      this.v = v;
-   }
+    public long getV() {
+        return v;
+    }
 
 
-   @Override
-   public String toString() {
-      return "YUV [" + y + ", " + u + ", " + v + "]";
-   }
+    public void setV(long v) {
+        this.v = v;
+    }
+
+
+    @Override
+    public String toString() {
+        return "YUV [" + y + ", " + u + ", " + v + "]";
+    }
 
 }

@@ -1,8 +1,8 @@
 package com.custom.site.name.decoder;
 
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class SecondLevelDecoder {
     private static final int N = 8;

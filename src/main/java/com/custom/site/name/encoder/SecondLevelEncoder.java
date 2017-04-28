@@ -1,8 +1,8 @@
 package com.custom.site.name.encoder;
 
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class SecondLevelEncoder {
     private static final int N = 8;

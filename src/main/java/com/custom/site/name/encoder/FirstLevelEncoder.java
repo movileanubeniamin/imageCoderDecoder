@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class FirstLevelEncoder {
 
+
     public static List<RGB> convertListToRgb(List<Integer> image) {
         List<RGB> rgbList = new ArrayList<RGB>();
         for (int index = 3; index < image.size();)

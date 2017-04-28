@@ -10,6 +10,7 @@ import java.util.List;
 
 public class FirstLevelDecoder {
 
+
     public static long[][] blocksToMatrix(List<long[][]> blocks, int width, int height ) {
         long[][] yuvMatrix = new long[height][width];
         int c = 0;
@@ -68,10 +69,10 @@ public class FirstLevelDecoder {
     }
 
 
-    public static List<YUV> convertMatrixToYUVList(long[][] yMatrix, long[][] uMatrix, long[][] vMatrix, int height, int width) {
+    public static List<YUV> convertMatrixToYUVList(long[][] yMatrix, long[][] uMatrix, long[][] vMatrix, int width, int height) {
         List<YUV> yuvList = new ArrayList<YUV>();
-        for(int i = 0; i < width; i++)
-            for(int j = 0; j < height; j++)
+        for(int i = 0; i < height; i++)
+            for(int j = 0; j < width; j++)
                 yuvList.add(new YUV(yMatrix[i][j], uMatrix[i][j], vMatrix[i][j]));
         return yuvList;
     }

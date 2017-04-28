@@ -6,6 +6,7 @@ public class RGB {
     private long g;
     private long b;
 
+
     public RGB() {
         super();
     }
