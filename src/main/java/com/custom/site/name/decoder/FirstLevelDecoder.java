@@ -24,8 +24,6 @@ public class FirstLevelDecoder {
                     yuvMatrix[c + bc][r + br] = block[bc][br];
                 }
             }
-            //calculate the next offset into the matrix
-            //The blocks where created in row-major order so we need to advance the offset in the same way
             r += blockHeight;
             if( r >= width ) {
                 r = 0;

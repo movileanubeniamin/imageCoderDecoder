@@ -36,12 +36,12 @@ public class SecondLevelDecoder {
     }
 
 
-    private static long[][] subThe128(long[][] originalMatrix, int nr){
+    private static long[][] addThe128(long[][] originalMatrix, int nr){
         long[][] subbedMatrix = new long[8][8];
         long[][] IDCTedMatrix = blocksToIDCT(originalMatrix);
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
-                subbedMatrix[i][j] = IDCTedMatrix[i][j] - nr;
+                subbedMatrix[i][j] = IDCTedMatrix[i][j] + nr;
             }
         }
         return subbedMatrix;
@@ -51,7 +51,7 @@ public class SecondLevelDecoder {
     public static List<long[][]> listToIDCT(List<long[][]> originalBlocks){
         List <long[][]> IDCTedBlocks = new ArrayList<long[][]>();
         for (int i = 0; i < originalBlocks.size(); i++){
-            IDCTedBlocks.add(subThe128(originalBlocks.get(i), 128));
+            IDCTedBlocks.add(addThe128(originalBlocks.get(i), 128));
         }
         return IDCTedBlocks;
     }

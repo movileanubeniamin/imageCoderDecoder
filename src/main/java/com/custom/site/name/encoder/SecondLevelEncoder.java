@@ -37,12 +37,12 @@ public class SecondLevelEncoder {
     }
 
 
-    private static long[][] addThe128(long[][] originalMatrix, int nr){
+    private static long[][] subThe128(long[][] originalMatrix, int nr){
         long[][] addedMatrix = new long[8][8];
         long[][] DCTedMatrix;
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
-                addedMatrix[i][j] = originalMatrix[i][j] + nr;
+                addedMatrix[i][j] = originalMatrix[i][j] - nr;
             }
         }
         DCTedMatrix = blocksToDCT(addedMatrix);
@@ -53,7 +53,7 @@ public class SecondLevelEncoder {
     public static List<long[][]> listToDCT(List<long[][]> originalBlocks){
         List <long[][]> DCTedBlocks = new ArrayList<long[][]>();
         for (int i = 0; i < originalBlocks.size(); i++){
-            DCTedBlocks.add(addThe128(originalBlocks.get(i), 128));
+            DCTedBlocks.add(subThe128(originalBlocks.get(i), 128));
         }
         return DCTedBlocks;
     }

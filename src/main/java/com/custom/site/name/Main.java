@@ -2,6 +2,7 @@ package com.custom.site.name;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import com.custom.site.name.decoder.FirstLevelDecoder;
 import com.custom.site.name.decoder.SecondLevelDecoder;
@@ -11,13 +12,22 @@ import com.custom.site.name.model.RGB;
 import com.custom.site.name.model.YUV;
 import com.custom.site.name.tests.TestImageEncoderDecoder;
 import com.custom.site.name.utils.FileUtils;
+import com.custom.site.name.utils.ImageUtils;
 
 
 public class Main {
 
 
     public static void main(String[] args) {
-         start();
+
+
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter the file name(no need for extension): ");
+        String imageName = reader.next();
+        System.out.println("Enter the compressed file name(no need for extension): ");
+        String newImageName = reader.next();
+        start(imageName, newImageName);
+
 
         // Tests
 //        TestImageEncoderDecoder.testSubsample();
@@ -30,11 +40,11 @@ public class Main {
     }
 
 
-    private static void start() {
+    private static void start(String imageName, String newImageName) {
         // First Level encoder
         // Reading file
         System.out.println("Reading ppm file...\n");
-        String fileName = "src/main/resources/image.ppm";
+        String fileName = "src/main/resources/"+imageName+".ppm";
         List<Integer> image = FileUtils.readPpm(fileName);
 
         // Getting image info (width, height, RGB list)
@@ -121,7 +131,8 @@ public class Main {
         // Convert RGB List into Image List and write it to file
         System.out.println("Converting the RGB List into Image List and writing it to file...\n");
         List<Integer> newImage = FirstLevelDecoder.convertRgbToList(rgbNewImage);
-        FileUtils.writePpm("src/main/resources/newImage.ppm", newImage, width, height, maxpix);
+        FileUtils.writePpm("src/main/resources/"+newImageName+".ppm", newImage, width, height, maxpix);
+
 
         System.out.println("Done!\n");
     }
