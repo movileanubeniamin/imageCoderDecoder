@@ -11,6 +11,22 @@ import java.util.Map;
 
 public class FirstLevelEncoder {
 
+    public static List<RGB> convertListToRgb(List<Integer> image) {
+        List<RGB> rgbList = new ArrayList<RGB>();
+        for (int index = 3; index < image.size();)
+            rgbList.add(new RGB(image.get(index++), image.get(index++), image.get(index++)));
+        return rgbList;
+    }
+
+
+    public static List<YUV> convertRGBImageToYUV(List<RGB> rgbImage) {
+        List<YUV> yuvImage = new ArrayList<YUV>();
+        for (RGB rgb : rgbImage)
+            yuvImage.add(convertRgbToYuv(rgb));
+        return yuvImage;
+    }
+
+
     private static YUV convertRgbToYuv(RGB rgb) {
         YUV yuv = new YUV();
 //        yuv.setY(Math.round(0.299 * rgb.getR() + 0.587 * rgb.getG() + 0.114 * rgb.getB()));
@@ -23,30 +39,14 @@ public class FirstLevelEncoder {
     }
 
 
-    public static List<YUV> convertRGBImageToYUV(List<RGB> rgbImage) {
-        List<YUV> yuvImage = new ArrayList<YUV>();
-        for (RGB rgb : rgbImage)
-            yuvImage.add(convertRgbToYuv(rgb));
-        return yuvImage;
-    }
-
-
-    public static List<RGB> convertListToRgb(List<Integer> image) {
-        List<RGB> rgbList = new ArrayList<RGB>();
-        for (int index = 3; index < image.size();)
-            rgbList.add(new RGB(image.get(index++), image.get(index++), image.get(index++)));
-        return rgbList;
-    }
-
-
     public static Map<String, long[][]> convertListToMatrix(List<YUV> yuvList, int width, int height) {
         Map<String, long[][]> imageMatrix = new HashMap<String, long[][]>();
-        long[][] yMatrix = new long[width][height];
-        long[][] uMatrix = new long[width][height];
-        long[][] vMatrix = new long[width][height];
+        long[][] yMatrix = new long[height][width];
+        long[][] uMatrix = new long[height][width];
+        long[][] vMatrix = new long[height][width];
         int nr = 0;
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
                 YUV yuvPixel = yuvList.get(nr);
                 yMatrix[i][j] = yuvPixel.getY();
                 uMatrix[i][j] = yuvPixel.getU();
@@ -59,7 +59,6 @@ public class FirstLevelEncoder {
         imageMatrix.put("v", vMatrix);
         return imageMatrix;
     }
-
 
 
     public static List<long[][]> matrixToBlocks(long[][] yuvMatrix, int blockDimension){

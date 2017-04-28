@@ -11,7 +11,7 @@ import java.util.List;
 public class FirstLevelDecoder {
 
     public static long[][] blocksToMatrix(List<long[][]> blocks, int width, int height ) {
-        long[][] yuvMatrix = new long[width][height];
+        long[][] yuvMatrix = new long[height][width];
         int c = 0;
         int r = 0;
         for( long[][] block : blocks ) {
@@ -26,7 +26,7 @@ public class FirstLevelDecoder {
             //calculate the next offset into the matrix
             //The blocks where created in row-major order so we need to advance the offset in the same way
             r += blockHeight;
-            if( r >= height ) {
+            if( r >= width ) {
                 r = 0;
                 c += blockWidth;
             }
@@ -68,7 +68,7 @@ public class FirstLevelDecoder {
     }
 
 
-    public static List<YUV> convertMatrixToYUVList(long[][] yMatrix, long[][] uMatrix, long[][] vMatrix, int width, int height) {
+    public static List<YUV> convertMatrixToYUVList(long[][] yMatrix, long[][] uMatrix, long[][] vMatrix, int height, int width) {
         List<YUV> yuvList = new ArrayList<YUV>();
         for(int i = 0; i < width; i++)
             for(int j = 0; j < height; j++)

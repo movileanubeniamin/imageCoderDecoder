@@ -36,17 +36,17 @@ public class FileUtils {
     }
 
 
-    public static void writePpm(String fileName, List<Integer> image) {
+    public static void writePpm(String fileName, List<Integer> image, int width, int height, int maxpix) {
         BufferedWriter outputWriter;
         try {
             outputWriter = new BufferedWriter(new FileWriter(fileName));
             outputWriter.write("P3");
             outputWriter.newLine();
-            outputWriter.write("# CREATOR: GIMP PNM Filter Version 1.1");
+            outputWriter.write("# Compressed Image");
             outputWriter.newLine();
-            outputWriter.write("800 600");
+            outputWriter.write(String.valueOf(width) + " " + String.valueOf(height));
             outputWriter.newLine();
-            outputWriter.write("255");
+            outputWriter.write(String.valueOf(maxpix));
             outputWriter.newLine();
             for (Integer anImage : image) {
                 outputWriter.write(Integer.toString(anImage));

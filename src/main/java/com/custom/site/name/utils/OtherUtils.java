@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by horea on 26/04/2017.
- */
+
 public class OtherUtils {
 
     public static float clamp(float val, float min, float max) {
