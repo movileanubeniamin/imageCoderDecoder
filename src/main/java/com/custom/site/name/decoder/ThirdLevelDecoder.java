@@ -72,9 +72,9 @@ public class ThirdLevelDecoder {
          // i++;
          // }
          if (i == 23)
-            System.out.println((i * 3 + 1) + "*" + vector.size());
+//            System.out.println((i * 3 + 1) + "*" + vector.size());
          if (i == 23)
-            System.out.println((i * 3 + 1) + "?" + vector.size());
+//            System.out.println((i * 3 + 1) + "?" + vector.size());
          try {
             block[posx.get(i)][posy.get(i)] = vector.get(3 * temp + 1);
          } catch (IndexOutOfBoundsException exception) {
