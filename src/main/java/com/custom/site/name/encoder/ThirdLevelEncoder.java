@@ -6,6 +6,7 @@ package com.custom.site.name.encoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.custom.site.name.decoder.ThirdLevelDecoder;
 import com.custom.site.name.utils.OtherUtils;
 
 public class ThirdLevelEncoder {
@@ -148,6 +149,10 @@ public class ThirdLevelEncoder {
       block[7][6] = 0;
       block[7][7] = 0;
       ThirdLevelEncoder thirdLevelEncoder = new ThirdLevelEncoder();
+      ThirdLevelDecoder thirdLevelDecoder = new ThirdLevelDecoder();
+      List<Long> encodedVector = thirdLevelEncoder.encodeBlock(block);
+      long[][] decodedVector = thirdLevelDecoder.decodeVector(encodedVector);
       System.out.println(thirdLevelEncoder.encodeBlock(block));
+      System.out.println(decodedVector);
    }
 }
