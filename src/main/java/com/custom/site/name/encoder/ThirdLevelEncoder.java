@@ -11,7 +11,7 @@ import com.custom.site.name.utils.OtherUtils;
 
 public class ThirdLevelEncoder {
    
-   private List<Long> zigZagVector(long[][] block) {
+   private static List<Long> zigZagVector(long[][] block) {
       List<Long> vector = new ArrayList<Long>();
       List<Integer> posx = new ArrayList<Integer>();
       List<Integer> posy = new ArrayList<Integer>();
@@ -58,7 +58,7 @@ public class ThirdLevelEncoder {
       return vector;
    }
    
-   public List<Long> encodeBlock(long[][] block) {
+   public static List<Long> encodeBlock(long[][] block) {
       List<Long> encodedBlock = new ArrayList<Long>();
       List<Long> vector = zigZagVector(block);
       encodedBlock.add(OtherUtils.calcualteSize(vector.get(0)));
@@ -80,6 +80,15 @@ public class ThirdLevelEncoder {
          counter = 0;
       }
       return encodedBlock;
+   }
+
+
+   public static List<List<Long>> listToZigZag(List<long[][]> originalBlocks){
+      List<List<Long>> zigZagList = new ArrayList<List<Long>>();
+      for (int i = 0; i < originalBlocks.size(); i++){
+         zigZagList.add(encodeBlock(originalBlocks.get(i)));
+      }
+      return zigZagList;
    }
    
    public static void main(String[] args) {

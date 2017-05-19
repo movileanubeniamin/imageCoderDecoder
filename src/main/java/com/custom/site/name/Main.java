@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 import com.custom.site.name.decoder.FirstLevelDecoder;
 import com.custom.site.name.decoder.SecondLevelDecoder;
+import com.custom.site.name.decoder.ThirdLevelDecoder;
 import com.custom.site.name.encoder.FirstLevelEncoder;
 import com.custom.site.name.encoder.SecondLevelEncoder;
+import com.custom.site.name.encoder.ThirdLevelEncoder;
 import com.custom.site.name.model.RGB;
 import com.custom.site.name.model.YUV;
 import com.custom.site.name.tests.TestImageEncoderDecoder;
@@ -98,12 +100,26 @@ public class Main {
 
 
         // ========================================================================================================
+        // Third Level encoder
+        List<List<Long>> zigZagY = ThirdLevelEncoder.listToZigZag(yBlocksQunati);
+        List<List<Long>> zigZagU = ThirdLevelEncoder.listToZigZag(uBlocksQunati);
+        List<List<Long>> zigZagV = ThirdLevelEncoder.listToZigZag(vBlocksQunati);
+
+
+        // ========================================================================================================
+        // Third Level decoder
+        List<long[][]> unZigZagY = ThirdLevelDecoder.zigZagToList(zigZagY);
+        List<long[][]> unZigZagU = ThirdLevelDecoder.zigZagToList(zigZagU);
+        List<long[][]> unZigZagV = ThirdLevelDecoder.zigZagToList(zigZagV);
+
+
+        // ========================================================================================================
         // Second Level decoder
         // Doing the Dequantization phase
         System.out.println("Doing the Dequantization phase...\n");
-        List<long[][]> yBlocksDequnati = SecondLevelDecoder.listToDequanti(yBlocksQunati);
-        List<long[][]> uBlocksDequnati = SecondLevelDecoder.listToDequanti(uBlocksQunati);
-        List<long[][]> vBlocksDequnati = SecondLevelDecoder.listToDequanti(vBlocksQunati);
+        List<long[][]> yBlocksDequnati = SecondLevelDecoder.listToDequanti(unZigZagY);
+        List<long[][]> uBlocksDequnati = SecondLevelDecoder.listToDequanti(unZigZagU);
+        List<long[][]> vBlocksDequnati = SecondLevelDecoder.listToDequanti(unZigZagV);
 
         // Doing the Inverse DCT and substracting 128 from every pixel
         System.out.println("Doing the Inverse DCT and substracting 128 from every pixel...\n");
