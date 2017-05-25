@@ -51,7 +51,7 @@ public class SecondLevelDecoder {
     public static List<long[][]> listToIDCT(List<long[][]> originalBlocks){
         List <long[][]> IDCTedBlocks = new ArrayList<long[][]>();
         for (int i = 0; i < originalBlocks.size(); i++){
-            IDCTedBlocks.add(addThe128(originalBlocks.get(i), 128));
+            IDCTedBlocks.add(addThe128(originalBlocks.get(i), 0));
         }
         return IDCTedBlocks;
     }

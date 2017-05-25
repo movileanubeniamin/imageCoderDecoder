@@ -1,16 +1,14 @@
-/**
- * 
- */
 package com.custom.site.name.encoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.custom.site.name.decoder.ThirdLevelDecoder;
 import com.custom.site.name.utils.OtherUtils;
 
 public class ThirdLevelEncoder {
-   
+
    private static List<Long> zigZagVector(long[][] block) {
       List<Long> vector = new ArrayList<Long>();
       List<Integer> posx = new ArrayList<Integer>();
@@ -32,7 +30,7 @@ public class ThirdLevelEncoder {
          for (j = i + 1; j < block.length; j++)
             posx.add(j);
       }
-      
+
       // build of posy
       for (int i = 1; i < block.length; i += 2) {
          int j;
@@ -50,14 +48,14 @@ public class ThirdLevelEncoder {
          for (j = i + 1; j < block.length; j++)
             posy.add(j);
       }
-      
+
       // creating the vector
       for (int i = 0; i < posx.size(); i++)
          vector.add(block[posx.get(i)][posy.get(i)]);
-      
+
       return vector;
    }
-   
+
    public static List<Long> encodeBlock(long[][] block) {
       List<Long> encodedBlock = new ArrayList<Long>();
       List<Long> vector = zigZagVector(block);
@@ -83,14 +81,14 @@ public class ThirdLevelEncoder {
    }
 
 
-   public static List<List<Long>> listToZigZag(List<long[][]> originalBlocks){
-      List<List<Long>> zigZagList = new ArrayList<List<Long>>();
+   public static List<Long> listToZigZag(List<long[][]> originalBlocks){
+      List<Long> zigZagList = new ArrayList<Long>();
       for (int i = 0; i < originalBlocks.size(); i++){
-         zigZagList.add(encodeBlock(originalBlocks.get(i)));
+         zigZagList.addAll(encodeBlock(originalBlocks.get(i)));
       }
       return zigZagList;
    }
-   
+
    public static void main(String[] args) {
       long[][] block = new long[8][8];
       block[0][0] = 150;
@@ -163,5 +161,6 @@ public class ThirdLevelEncoder {
       long[][] decodedVector = thirdLevelDecoder.decodeVector(encodedVector);
       System.out.println(thirdLevelEncoder.encodeBlock(block));
       System.out.println(decodedVector);
+      System.out.println(Arrays.deepEquals(block, decodedVector));
    }
 }

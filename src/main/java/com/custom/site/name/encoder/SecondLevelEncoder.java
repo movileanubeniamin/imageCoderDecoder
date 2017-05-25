@@ -53,7 +53,7 @@ public class SecondLevelEncoder {
     public static List<long[][]> listToDCT(List<long[][]> originalBlocks){
         List <long[][]> DCTedBlocks = new ArrayList<long[][]>();
         for (int i = 0; i < originalBlocks.size(); i++){
-            DCTedBlocks.add(subThe128(originalBlocks.get(i), 128));
+            DCTedBlocks.add(subThe128(originalBlocks.get(i), 0));
         }
         return DCTedBlocks;
     }
